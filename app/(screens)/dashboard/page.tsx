@@ -6,6 +6,7 @@ import { YearWinnerCount } from '~/app/store/yearsMultipleWinners/types';
 import { useAppStore } from '~/app/store';
 import { StudioWithWinCount } from '~/app/store/topThreeStudios/types';
 import { ProducerInterval } from '~/app/store/maxMinIntervalProducers/types';
+import { WinnerByYear } from '~/app/store/winnersByYear/types';
 
 
 // List Movie winners by year table
@@ -74,14 +75,23 @@ export default function Dashboard() {
     fetchMaxMinIntervalProducersApi
   } = useAppStore(state => state.maxMinIntervalProducers)
 
+  const {
+    winnersByYear,
+    winnersByYearColumns,
+    isLoading: isWinnersByYearLoading,
+    fetchWinnersByYearApi
+  } = useAppStore(state => state.winnersByYear);
+
   useEffect(() => {
     fetchYearsMultipleWinnersApi();
     fetchStudiosWinCountApi()
     fetchMaxMinIntervalProducersApi()
+    fetchWinnersByYearApi();
   }, [
     fetchYearsMultipleWinnersApi, 
     fetchStudiosWinCountApi,
     fetchMaxMinIntervalProducersApi,
+    fetchWinnersByYearApi
   ]);
 
   return (
@@ -148,9 +158,10 @@ export default function Dashboard() {
                 </button>
               </div>
 
-              <Table<IListMovieWinnersByYearData>
-                columns={listMovieWinnersByYearColumns}
-                data={listMovieWinnersByYearData}
+              <Table<WinnerByYear>
+                columns={winnersByYearColumns}
+                data={winnersByYear}
+                isLoading={isWinnersByYearLoading}
               />
           </div>
 

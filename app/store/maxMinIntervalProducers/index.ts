@@ -3,6 +3,7 @@ import {ImmerStateCreator} from '~/app/store';
 import {IMaxMinIntervalProducersSlice, IProducerInterval, ProducerInterval} from './types';
 import { api } from '~/app/services/api';
 import { AxiosResponse } from 'axios';
+import { showErrorToast } from '~/app/utils/showToast';
 
 export const createMaxMinIntervalProducersSlice: ImmerStateCreator<
 IMaxMinIntervalProducersSlice
@@ -57,7 +58,7 @@ IMaxMinIntervalProducersSlice
                     state.maxMinIntervalProducers.intervalMin = res.data.min
                 })
             } catch (err) {
-                console.error("Error in data fetch:", err);
+                showErrorToast('Erro ao carregar o intervalo máximo e mínimo de vitorias dos produtores!');
             } finally {
                 set(state => {
                     state.maxMinIntervalProducers.isLoading = false
