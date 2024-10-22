@@ -28,6 +28,6 @@ describe('Sidebar', () => {
     it('should render the sidebar container with the correct class names', () => {
         render(<Sidebar />)
         const sidebarContainer = screen.getByLabelText('Sidebar')
-        expect(sidebarContainer).toHaveClass('flex h-screen flex-col w-40 bg-slate-400')
+        expect(sidebarContainer).toHaveClass('flex flex-col w-40 bg-slate-400 p-10')
     })
 })
