@@ -5,55 +5,8 @@ import { useEffect } from 'react';
 import { YearWinnerCount } from '~/app/store/yearsMultipleWinners/types';
 import { useAppStore } from '~/app/store';
 import { StudioWithWinCount } from '~/app/store/topThreeStudios/types';
+import { ProducerInterval } from '~/app/store/maxMinIntervalProducers/types';
 
-// Producer With Longest and Shortest Interval Between wins table
-interface IProducerIntervalWinsData {
-  producer: string;
-  interval: number;
-  previousYear: number;
-  followingYear: number;
-}
-
-const producerIntervalWinsColumns: IColumn<IProducerIntervalWinsData>[] = [
-  {
-    id: 1,
-    title: 'Producer',
-    property: 'producer'
-  },
-  {
-    id: 2,
-    title: 'Interval',
-    property: 'interval'
-  },
-  {
-    id: 3,
-    title: 'Previous year',
-    property: 'previousYear'
-  },
-  {
-    id: 4,
-    title: 'Following year',
-    property: 'followingYear'
-  }
-]
-
-const producerMaximumIntervalWinsData: IProducerIntervalWinsData[] = [
-  {
-    producer: 'Matthew Vaughn',
-    interval: 13,
-    previousYear: 2002,
-    followingYear: 2015
-  }
-]
-
-const producerMinimumIntervalWinsData: IProducerIntervalWinsData[] = [
-  {
-    producer: 'Joel SIlver',
-    interval: 1,
-    previousYear: 1990,
-    followingYear: 1991
-  }
-]
 
 // List Movie winners by year table
 interface IListMovieWinnersByYearData {
@@ -113,12 +66,22 @@ export default function Dashboard() {
     fetchStudiosWinCountApi
   } = useAppStore(state => state.topThreeStudiosWithWinCount)
 
+  const { 
+    intervalMax,
+    intervalMin, 
+    maxMinIntervalProducersColumns,
+    isLoading: isMaxMinIntervalProducersLoading, 
+    fetchMaxMinIntervalProducersApi
+  } = useAppStore(state => state.maxMinIntervalProducers)
+
   useEffect(() => {
     fetchYearsMultipleWinnersApi();
     fetchStudiosWinCountApi()
+    fetchMaxMinIntervalProducersApi()
   }, [
     fetchYearsMultipleWinnersApi, 
-    fetchStudiosWinCountApi
+    fetchStudiosWinCountApi,
+    fetchMaxMinIntervalProducersApi,
   ]);
 
   return (
@@ -158,17 +121,19 @@ export default function Dashboard() {
 
             <div>
               <h1>Maximum</h1>
-              <Table<IProducerIntervalWinsData>
-                columns={producerIntervalWinsColumns}
-                data={producerMaximumIntervalWinsData}
+              <Table<ProducerInterval>
+                columns={maxMinIntervalProducersColumns}
+                data={intervalMax}
+                isLoading={isMaxMinIntervalProducersLoading}
               />
             </div>
 
             <div>
               <h1>Minimum</h1>
-              <Table<IProducerIntervalWinsData>
-                columns={producerIntervalWinsColumns}
-                data={producerMinimumIntervalWinsData}
+              <Table<ProducerInterval>
+                columns={maxMinIntervalProducersColumns}
+                data={intervalMin}
+                isLoading={isMaxMinIntervalProducersLoading}
               />
             </div>
           </div>

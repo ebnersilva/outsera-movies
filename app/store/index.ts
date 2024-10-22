@@ -5,8 +5,10 @@ import { immer } from 'zustand/middleware/immer';
 import { createYearsMultipleWinnersSlice } from './yearsMultipleWinners';
 import { ITopThreeStudiosSlice } from './topThreeStudios/types';
 import { createTopThreeStudiosSlice } from './topThreeStudios';
+import { IMaxMinIntervalProducersSlice } from './maxMinIntervalProducers/types';
+import { createMaxMinIntervalProducersSlice } from './maxMinIntervalProducers';
 
-export type IStoreState = IYearsMultipleWinnersSlice & ITopThreeStudiosSlice
+export type IStoreState = IYearsMultipleWinnersSlice & ITopThreeStudiosSlice & IMaxMinIntervalProducersSlice
 export type ImmerStateCreator<T> = StateCreator<
 	IStoreState,
 	[['zustand/immer', never], never],
@@ -17,6 +19,7 @@ export type ImmerStateCreator<T> = StateCreator<
 export const useAppStore = create<IStoreState>()(
     immer((...a) => ({
         ...createYearsMultipleWinnersSlice(...a),
-		...createTopThreeStudiosSlice(...a)
+		...createTopThreeStudiosSlice(...a),
+		...createMaxMinIntervalProducersSlice(...a)
     })),
 );
