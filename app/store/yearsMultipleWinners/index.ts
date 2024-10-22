@@ -1,26 +1,26 @@
-import {ImmerStateCreator} from '~/app/store';
+import { ImmerStateCreator } from '~/app/store';
 
-import {IYearsMultipleWinnersSlice, IYearWithMultipleWinner, YearWinnerCount} from './types';
+import { IYearsMultipleWinnersSlice, IYearWithMultipleWinner, YearWinnerCount } from './types';
 import { api } from '~/app/services/api';
 import { AxiosResponse } from 'axios';
 import { showErrorToast } from '~/app/utils/showToast';
 
 export const createYearsMultipleWinnersSlice: ImmerStateCreator<
-IYearsMultipleWinnersSlice
+    IYearsMultipleWinnersSlice
 > = set => ({
-	yearsMultipleWinners: {
+    yearsMultipleWinners: {
         yearsMultipleWinners: [],
         isLoading: true,
         yearsMultipleWinnersColumns: [
             {
                 id: 1,
                 title: 'Year',
-                property: 'year'
+                property: 'year',
             },
             {
                 id: 2,
                 title: 'Win count',
-                property: 'winnerCount'
+                property: 'winnerCount',
             }
         ],
         actionSetYearsMultipleWinners: (years: YearWinnerCount[]) => {
@@ -51,7 +51,7 @@ IYearsMultipleWinnersSlice
                 set(state => {
                     state.yearsMultipleWinners.yearsMultipleWinners = res.data.years
                 })
-            } catch (err) {
+            } catch {
                 showErrorToast('Erro ao carregar os vencedores múltiplos por ano!');
             } finally {
                 set(state => {
