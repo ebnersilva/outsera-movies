@@ -1,76 +1,10 @@
 'use client'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
-import { IColumn, Table } from '../components/Table';
-
-
-// List Year Multiple Winners Table
-interface IListYearMultipleWinnersData {
-  year: number;
-  winCount: number;
-}
-
-const listYearMultipleWinnersColumns: IColumn<IListYearMultipleWinnersData>[] = [
-  {
-    id: 1,
-    title: 'Year',
-    property: 'year'
-  },
-  {
-    id: 2,
-    title: 'Win count',
-    property: 'winCount'
-  },
-]
-
-const listYearMultipleWinnersData: IListYearMultipleWinnersData[] = [
-  {
-    year: 2022,
-    winCount: 1
-  },
-  {
-    year: 2021,
-    winCount: 2
-  },
-  {
-    year: 2020,
-    winCount: 2
-  },
-]
-
-
-// Top Three Studios Table
-interface ITopThreeStudiosData {
-  name: string;
-  winCount: number;
-}
-
-const topThreeStudiosColumns: IColumn<ITopThreeStudiosData>[] = [
-  {
-    id: 1,
-    title: 'Name',
-    property: 'name'
-  },
-  {
-    id: 2,
-    title: 'Win count',
-    property: 'winCount'
-  },
-]
-
-const topThreeStudiosData: ITopThreeStudiosData[] = [
-  {
-    name: 'Columbia Pictures',
-    winCount: 6
-  },
-  {
-    name: 'Paramount Pictures',
-    winCount: 6
-  },
-  {
-    name: 'Warner Bros.',
-    winCount: 5
-  },
-]
+import { IColumn, Table } from '../../components/Table';
+import { useEffect } from 'react';
+import { YearWinnerCount } from '~/app/store/yearsMultipleWinners/types';
+import { useAppStore } from '~/app/store';
+import { StudioWithWinCount } from '~/app/store/topThreeStudios/types';
 
 // Producer With Longest and Shortest Interval Between wins table
 interface IProducerIntervalWinsData {
@@ -165,6 +99,27 @@ const listMovieWinnersByYearData: IListMovieWinnersByYearData[] = [
 ]
 
 export default function Dashboard() {
+  const { 
+    yearsMultipleWinners, 
+    yearsMultipleWinnersColumns,
+    isLoading: isYearsMultipleWinnersLoading, 
+    fetchYearsMultipleWinnersApi,
+  } = useAppStore(state => state.yearsMultipleWinners);
+  
+  const { 
+    studiosWithWinCount, 
+    studiosWithWinCountColumns,
+    isLoading: isTopThreeStudiosWithCountLoading, 
+    fetchStudiosWinCountApi
+  } = useAppStore(state => state.topThreeStudiosWithWinCount)
+
+  useEffect(() => {
+    fetchYearsMultipleWinnersApi();
+    fetchStudiosWinCountApi()
+  }, [
+    fetchYearsMultipleWinnersApi, 
+    fetchStudiosWinCountApi
+  ]);
 
   return (
     <div className="flex flex-1 flex-col h-screen p-20 gap-10 bg-slate-700">
@@ -176,18 +131,21 @@ export default function Dashboard() {
         <div className="flex flex-1 flex-col px-4 py-4 bg-slate-500 rounded-md">
           <strong>List years multiple winners</strong>
           
-          <Table<IListYearMultipleWinnersData>
-            columns={listYearMultipleWinnersColumns}
-            data={listYearMultipleWinnersData}
+          <Table<YearWinnerCount>
+            columns={yearsMultipleWinnersColumns}
+            data={yearsMultipleWinners}
+            isLoading={isYearsMultipleWinnersLoading}
           />
+          
         </div>
 
         <div className="flex flex-1 flex-col px-4 py-4 overflow-x-auto bg-slate-500 rounded-md">
           <strong>Top 3 studios with winners</strong>
 
-          <Table<ITopThreeStudiosData>
-            columns={topThreeStudiosColumns}
-            data={topThreeStudiosData}
+          <Table<StudioWithWinCount>
+            columns={studiosWithWinCountColumns}
+            data={studiosWithWinCount}
+            isLoading={isTopThreeStudiosWithCountLoading}
           />
         </div>
 

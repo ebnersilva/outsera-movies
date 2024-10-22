@@ -7,9 +7,10 @@ export interface IColumn<T> {
 interface ITableContainer<T> {
     columns: IColumn<T>[];
     data: T[]
+    isLoading?: boolean;
 }
 
-export const Table = <T,>({ columns, data }: ITableContainer<T>) => {
+export const Table = <T,>({ columns, data, isLoading }: ITableContainer<T>) => {
     return (
         <table className="min-w-full bg-slate-50 border border-slate-200 rounded-lg overflow-hidden">
             <thead>
@@ -19,7 +20,16 @@ export const Table = <T,>({ columns, data }: ITableContainer<T>) => {
                 ))}
                 </tr>
             </thead>
-            <tbody>
+            <tbody className="flex-grow">
+                {isLoading && (
+                    <tr className="flex min-w-full">
+                        <td>
+                            <div className="flex self-center">
+                                <div className="text-slate-500 text-center">Carregando...</div>
+                            </div>
+                        </td>
+                    </tr>
+                )}
                 {data.map((row, rowIndex) => (
                     <tr key={rowIndex} className="border-b hover:bg-slate-50">
                         {columns.map((column) => (
