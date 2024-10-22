@@ -85,11 +85,11 @@ export default function Dashboard() {
   ]);
 
   return (
-    <div className="flex flex-1 flex-col h-screen p-20 gap-10 bg-slate-700">
+    <div className="flex flex-1 flex-col p-20 gap-10 bg-slate-700">
       <h1>Dashboard</h1>
 
       {/* First Line */}
-      <div className="flex flex-row rounded-md gap-10">
+      <div className="flex flex-row sm:flex-col md:flex-col lg:flex-row rounded-md gap-10">
 
         <div className="flex flex-1 flex-col px-4 py-4 bg-slate-500 rounded-md">
           <strong>List years multiple winners</strong>
@@ -115,7 +115,7 @@ export default function Dashboard() {
       </div>
 
       {/* Second Line */}
-      <div className="flex flex-row gap-10">
+      <div className="flex flex-row gap-10 flex-wrap">
           <div className="flex flex-col flex-1 bg-slate-500 gap-4 px-4 py-4 rounded-md">
             <strong>Producers with longest and shortest interval between wins</strong>
 
