@@ -1,9 +1,13 @@
-import { it, describe } from 'vitest'
+import { it, describe, expect } from 'vitest'
 import { render } from '@testing-library/react'
 import Dashboard from '../../dashboard/page'
  
 describe('Dashboard', () => {
     it('should render Dashboard component' , () => {
-        render(<Dashboard  />)
+        const wrapper = render(<Dashboard  />)
+
+        const title = wrapper.getByText('Dashboard')
+
+        expect(title).toBeInTheDocument()
     })
 })
