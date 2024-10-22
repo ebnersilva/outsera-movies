@@ -10,7 +10,7 @@ IYearsMultipleWinnersSlice
 > = set => ({
 	yearsMultipleWinners: {
         yearsMultipleWinners: [],
-        isLoading: false,
+        isLoading: true,
         yearsMultipleWinnersColumns: [
             {
                 id: 1,

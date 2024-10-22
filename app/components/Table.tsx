@@ -21,15 +21,6 @@ export const Table = <T,>({ columns, data, isLoading }: ITableContainer<T>) => {
                 </tr>
             </thead>
             <tbody className="flex-grow">
-                {isLoading && (
-                    <tr className="flex min-w-full">
-                        <td>
-                            <div className="flex self-center">
-                                <div className="text-slate-500 text-center">Carregando...</div>
-                            </div>
-                        </td>
-                    </tr>
-                )}
                 {data.map((row, rowIndex) => (
                     <tr key={rowIndex} className="border-b hover:bg-slate-50">
                         {columns.map((column) => (
@@ -38,6 +29,22 @@ export const Table = <T,>({ columns, data, isLoading }: ITableContainer<T>) => {
                     </tr>
                 ))}
             </tbody>
+            <tfoot>
+                {isLoading && (
+                    <tr className="bg-slate-100 border-b">
+                        <td className="px-6 text-slate-500 " colSpan={columns.length}>
+                            <div className="text-slate-500 text-center">Carregando...</div>
+                        </td>
+                    </tr>
+                )}
+                {!isLoading && (
+                    <tr className="bg-slate-100 border-b">
+                        <td className="px-6 text-slate-500 " colSpan={columns.length}>
+                            <div className="text-slate-500 text-center">{data.length} registro(s)</div>
+                        </td>
+                    </tr>
+                )}
+            </tfoot>
         </table>
     )
 }

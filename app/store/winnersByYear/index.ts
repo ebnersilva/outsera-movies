@@ -27,7 +27,7 @@ IWinnersByYearSlice
                 property: 'title'
             }
         ],
-        isLoading: false,
+        isLoading: true,
         actionSetIsLoading: (isLoading: boolean) => {
             set(state => {
                 state.winnersByYear.isLoading = isLoading

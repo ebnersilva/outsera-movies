@@ -22,7 +22,7 @@ ITopThreeStudiosSlice
                 property: 'winCount'
             },
         ],
-        isLoading: false,
+        isLoading: true,
         actionSetStudiosWinCount: (studios: StudioWithWinCount[]) => {
             set(state => {
                 state.topThreeStudiosWithWinCount.studiosWithWinCount = studios

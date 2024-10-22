@@ -33,7 +33,7 @@ IMaxMinIntervalProducersSlice
                 property: 'followingWin'
               }
         ],
-        isLoading: false,
+        isLoading: true,
         actionSetIsLoading: (isLoading: boolean) => {
             set(state => {
                 state.maxMinIntervalProducers.isLoading = isLoading
