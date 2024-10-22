@@ -52,16 +52,14 @@ describe('Table', () => {
             }
         ]
 
-        const wrapper = render(<Table columns={columns} data={data}  />)
-
-        wrapper.debug()
+        render(<Table columns={columns} data={data}  />)
         
-        // Verificar os cabeçalhos das colunas
+        // Check columns headers
         columns.forEach((column) => {
             expect(screen.getByText(column.title)).toBeInTheDocument();
         });
     
-        // Verificar o conteúdo das linhas da tabela
+        // Check table content
         data.forEach((row) => {
             expect(screen.getByText(row.id.toString())).toBeInTheDocument();
             expect(screen.getByText(row.title)).toBeInTheDocument();
