@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h3 align="center">
+  🚀 Outsera - Movies
+</h3>
 
-## Getting Started
+<p align="center">
+  <a href="#rocket-sobre-a-API">Sobre o sistema</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#open_book-como-utilizar">Como utilizar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#test_tube-testes">Testes</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#heart_eyes_cat-demonstração">Demonstração</a>&nbsp;&nbsp;&nbsp;
 
-First, run the development server:
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## :rocket: Sobre o sistema
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- O sistema web Outsera - Movies trata-se de uma aplicação que possibilita a leitura da lista de indicados e vencedores da categoria Pior Filme do Golden Raspberry Awards.
+- Framework utilizado: **`NextJS`**
+- Estilização: **`Tailwind CSS`**
+- Testes: **`Vitest`**
+- Gerenciamento de estados globais **`Zustand`**
+- Ícones: **`Radix UI Icons`**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## :open_book: Como utilizar
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Clone o projeto do github **`git clone https://github.com/ebnersilva/outsera-movies.git`**
+- **`cd outsera-movies`**
+- Existe um arquivo no projeto denominado **`.nvmrc`** deixe a sua versão do node na mesma versão que esse arquivo demonstra.
+- Rode **`yarn`** ou **`npm install`**
+- Crie a variável ambiente **`.env`** de acordo com a variável ambiente de exemplo **`.env.example`**
+- Inicialize o sistema com o comando **`yarn dev ou npm run dev`**
 
-## Learn More
+### :test_tube: Testes
 
-To learn more about Next.js, take a look at the following resources:
+- Para rodar os testes você pode utilizar os scrips do package.json ex: **`yarn test ou npm run test`** e se deseja gerar o coverage de testes rode o comando **`yarn coverage ou npm run coverage`**:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### :heart_eyes_cat: Demonstração
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Tela de dashboard
+  <img src="./assets/Dashboard.png">
 
-## Deploy on Vercel
+- Tela de listagem
+  <img src="./assets/List.png">
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Feito com 💜 by Ebner Silva :wave:
