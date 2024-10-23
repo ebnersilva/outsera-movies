@@ -41,6 +41,8 @@
 - Tela de listagem
   <img src="./assets/List.png">
 
+- O projeto está hospedado na **`Vercel`** no link: https://outsera-movies.vercel.app/dashboard
+
 ---
 
 Feito com 💜 by Ebner Silva :wave:
