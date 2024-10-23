@@ -1,14 +1,14 @@
-import {ImmerStateCreator} from '~/app/store';
+import { ImmerStateCreator } from '~/app/store';
 
-import {ITopThreeStudiosSlice, IStudioWithWinCount, StudioWithWinCount} from './types';
+import { ITopThreeStudiosSlice, IStudioWithWinCount, StudioWithWinCount } from './types';
 import { api } from '~/app/services/api';
 import { AxiosResponse } from 'axios';
 import { showErrorToast } from '~/app/utils/showToast';
 
 export const createTopThreeStudiosSlice: ImmerStateCreator<
-ITopThreeStudiosSlice
+    ITopThreeStudiosSlice
 > = set => ({
-	topThreeStudiosWithWinCount: {
+    topThreeStudiosWithWinCount: {
         studiosWithWinCount: [],
         studiosWithWinCountColumns: [
             {
@@ -51,7 +51,7 @@ ITopThreeStudiosSlice
                 set(state => {
                     state.topThreeStudiosWithWinCount.studiosWithWinCount = res.data.studios.slice(-3)
                 })
-            } catch (err) {
+            } catch {
                 showErrorToast('Erro ao carregar top 3 studios!');
             } finally {
                 set(state => {

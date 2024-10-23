@@ -1,14 +1,14 @@
-import {ImmerStateCreator} from '~/app/store';
+import { ImmerStateCreator } from '~/app/store';
 
-import {IMaxMinIntervalProducersSlice, IProducerInterval, ProducerInterval} from './types';
+import { IMaxMinIntervalProducersSlice, IProducerInterval } from './types';
 import { api } from '~/app/services/api';
 import { AxiosResponse } from 'axios';
 import { showErrorToast } from '~/app/utils/showToast';
 
 export const createMaxMinIntervalProducersSlice: ImmerStateCreator<
-IMaxMinIntervalProducersSlice
+    IMaxMinIntervalProducersSlice
 > = set => ({
-	maxMinIntervalProducers: {
+    maxMinIntervalProducers: {
         intervalMax: [],
         intervalMin: [],
         maxMinIntervalProducersColumns: [
@@ -16,22 +16,22 @@ IMaxMinIntervalProducersSlice
                 id: 1,
                 title: 'Producer',
                 property: 'producer'
-              },
-              {
+            },
+            {
                 id: 2,
                 title: 'Interval',
                 property: 'interval'
-              },
-              {
+            },
+            {
                 id: 3,
                 title: 'Previous year',
                 property: 'previousWin'
-              },
-              {
+            },
+            {
                 id: 4,
                 title: 'Following year',
                 property: 'followingWin'
-              }
+            }
         ],
         isLoading: true,
         actionSetIsLoading: (isLoading: boolean) => {
@@ -55,9 +55,9 @@ IMaxMinIntervalProducersSlice
 
                 set(state => {
                     state.maxMinIntervalProducers.intervalMax = res.data.max,
-                    state.maxMinIntervalProducers.intervalMin = res.data.min
+                        state.maxMinIntervalProducers.intervalMin = res.data.min
                 })
-            } catch (err) {
+            } catch {
                 showErrorToast('Erro ao carregar o intervalo máximo e mínimo de vitorias dos produtores!');
             } finally {
                 set(state => {

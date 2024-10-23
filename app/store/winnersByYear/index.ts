@@ -1,14 +1,14 @@
-import {ImmerStateCreator} from '~/app/store';
+import { ImmerStateCreator } from '~/app/store';
 
-import { IWinnersByYearSlice, WinnerByYear} from './types';
+import { IWinnersByYearSlice, WinnerByYear } from './types';
 import { api } from '~/app/services/api';
 import { AxiosResponse } from 'axios';
 import { showErrorToast } from '~/app/utils/showToast';
 
 export const createWinnersByYearSlice: ImmerStateCreator<
-IWinnersByYearSlice
+    IWinnersByYearSlice
 > = set => ({
-	winnersByYear: {
+    winnersByYear: {
         winnersByYear: [],
         winnersByYearColumns: [
             {
@@ -51,7 +51,7 @@ IWinnersByYearSlice
                 set(state => {
                     state.winnersByYear.winnersByYear = res.data;
                 })
-            } catch (err) {
+            } catch {
                 showErrorToast('Erro ao carregar os filmes vencedores por ano!');
             } finally {
                 set(state => {

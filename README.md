@@ -27,6 +27,7 @@
 - Rode **`yarn`** ou **`npm install`**
 - Crie a variável ambiente **`.env`** de acordo com a variável ambiente de exemplo **`.env.example`**
 - Inicialize o sistema com o comando **`yarn dev ou npm run dev`**
+- Caso deseja rodar build, rode o comando **`yarn build ou npm run build`**
 
 ### :test_tube: Testes
 
