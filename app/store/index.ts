@@ -1,4 +1,4 @@
-import {create, StateCreator} from 'zustand';
+import { create, StateCreator } from 'zustand';
 import { IYearsMultipleWinnersSlice } from './yearsMultipleWinners/types';
 import { immer } from 'zustand/middleware/immer';
 
@@ -9,12 +9,16 @@ import { IMaxMinIntervalProducersSlice } from './maxMinIntervalProducers/types';
 import { createMaxMinIntervalProducersSlice } from './maxMinIntervalProducers';
 import { IWinnersByYearSlice } from './winnersByYear/types';
 import { createWinnersByYearSlice } from './winnersByYear';
+import { IMoviesListSlice } from './moviesList/types';
+import { createMoviesListSlice } from './moviesList';
 
-export type IStoreState = 
-	IYearsMultipleWinnersSlice & 
-	ITopThreeStudiosSlice & 
+export type IStoreState =
+	IYearsMultipleWinnersSlice &
+	ITopThreeStudiosSlice &
 	IMaxMinIntervalProducersSlice &
-	IWinnersByYearSlice;
+	IWinnersByYearSlice &
+	IMoviesListSlice;
+
 export type ImmerStateCreator<T> = StateCreator<
 	IStoreState,
 	[['zustand/immer', never], never],
@@ -23,10 +27,11 @@ export type ImmerStateCreator<T> = StateCreator<
 >;
 
 export const useAppStore = create<IStoreState>()(
-    immer((...a) => ({
-        ...createYearsMultipleWinnersSlice(...a),
+	immer((...a) => ({
+		...createYearsMultipleWinnersSlice(...a),
 		...createTopThreeStudiosSlice(...a),
 		...createMaxMinIntervalProducersSlice(...a),
-		...createWinnersByYearSlice(...a)
-    })),
+		...createWinnersByYearSlice(...a),
+		...createMoviesListSlice(...a)
+	})),
 );
