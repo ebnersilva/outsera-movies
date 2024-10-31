@@ -4,12 +4,13 @@ import {useEffect, useState} from 'react';
 import {Table} from '~/app/components/Table';
 import {useAppStore} from '~/app/store';
 import {Movie} from '~/app/store/moviesList/types';
+import { INITIAL_PAGE } from '~/app/utils/constants';
 import {showErrorToast} from '~/app/utils/showToast';
 
 export default function Movies() {
 	const [yearFilter, setYearFilter] = useState('');
-	const [winnerFilter, setWinnerFilter] = useState(true);
-	const [currentPage, setCurrentPage] = useState(1);
+	const [winnerFilter, setWinnerFilter] = useState<boolean | undefined>(undefined);
+	const [currentPage, setCurrentPage] = useState(0);
 
 	const {data, isLoading, fetchMoviesListApi, moviesListColumns} = useAppStore(
 		state => state.moviesList,
@@ -18,7 +19,7 @@ export default function Movies() {
 	const handleOnChangeFilterTextChange = (value: string) => {
 		// regex to check if value is a year valid
 		if (/^\d{4}$/.test(value) || value === '') {
-			setCurrentPage(1);
+			setCurrentPage(INITIAL_PAGE);
 			setYearFilter(value);
 		} else {
 			showErrorToast('Ano inválido');
@@ -30,9 +31,11 @@ export default function Movies() {
 			setWinnerFilter(true);
 		} else if (value === 'no') {
 			setWinnerFilter(false);
+		} else if (value === '') {
+			setWinnerFilter(undefined);
 		}
 
-		setCurrentPage(1);
+		setCurrentPage(INITIAL_PAGE);
 	};
 
 	useEffect(() => {

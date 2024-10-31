@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import { INITIAL_PAGE } from '../utils/constants';
 
 interface IPaginationProps {
 	totalPages: number;
@@ -25,9 +26,9 @@ export const Pagination = ({
 			pages.push(
 				<button
 					key={i}
-					onClick={() => handlePageChange(i)}
+					onClick={() => handlePageChange(i - 1)}
 					className={`px-3 py-1 mx-1 ${
-						activePage === i
+						activePage === i - 1
 							? 'bg-blue-500 text-white'
 							: 'bg-slate-800 text-white'
 					} rounded-md`}
@@ -43,16 +44,16 @@ export const Pagination = ({
 	return (
 		<div className="flex flex-wrap items-center justify-center space-x-2 mt-4 gap-1">
 			<button
-				onClick={() => handlePageChange(1)}
+				onClick={() => handlePageChange(INITIAL_PAGE)}
 				className="px-2 py-1 bg-slate-800 text-white rounded-md"
-				disabled={activePage === 1}
+				disabled={activePage === INITIAL_PAGE}
 			>
 				{'<<'}
 			</button>
 			<button
 				onClick={() => handlePageChange(activePage - 1)}
 				className="px-2 py-1 bg-slate-800 text-white rounded-md"
-				disabled={activePage === 1}
+				disabled={activePage === INITIAL_PAGE}
 			>
 				{'<'}
 			</button>
@@ -62,14 +63,14 @@ export const Pagination = ({
 			<button
 				onClick={() => handlePageChange(activePage + 1)}
 				className="px-2 py-1 bg-slate-800 text-white rounded-md"
-				disabled={activePage === totalPages}
+				disabled={activePage === totalPages - 1}
 			>
 				{'>'}
 			</button>
 			<button
-				onClick={() => handlePageChange(totalPages)}
+				onClick={() => handlePageChange(totalPages - 1)}
 				className="px-2 py-1 bg-slate-800 text-white rounded-md"
-				disabled={activePage === totalPages}
+				disabled={activePage === totalPages - 1}
 			>
 				{'>>'}
 			</button>

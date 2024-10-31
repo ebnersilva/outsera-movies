@@ -50,7 +50,7 @@ export const createMoviesListSlice: ImmerStateCreator<
                             id: 1,
                             title: '-- Yes / No --',
                             value: '',
-                            disabled: true
+                            disabled: false
                         },
                         {
                             id: 2,
