@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { useAppStore } from '~/app/store';
+import { INITIAL_PAGE } from '~/app/utils/constants';
 
 describe('Store: moviesList', () => {
     it('should initialize with default values', () => {
@@ -15,7 +16,7 @@ describe('Store: moviesList', () => {
             pageable: {
                 offset: 0,
                 pageSize: 50,
-                pageNumber: 1
+                pageNumber: INITIAL_PAGE
             },
             totalPages: 1,
             totalElements: 0,
@@ -50,7 +51,7 @@ describe('Store: moviesList', () => {
                             id: 1,
                             title: '-- Yes / No --',
                             value: '',
-                            disabled: true
+                            disabled: false
                         },
                         {
                             id: 2,

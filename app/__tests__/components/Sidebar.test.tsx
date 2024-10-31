@@ -29,7 +29,7 @@ describe('Sidebar', () => {
 		render(<Sidebar />);
 		const sidebarContainer = screen.getByLabelText('Sidebar');
 		expect(sidebarContainer).toHaveClass(
-			'flex flex-col w-40 bg-slate-400 p-10',
+			'flex flex-col w-50 bg-slate-400 p-10 gap-4',
 		);
 	});
 });
