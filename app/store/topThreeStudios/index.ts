@@ -49,7 +49,7 @@ export const createTopThreeStudiosSlice: ImmerStateCreator<
 
 
                 set(state => {
-                    state.topThreeStudiosWithWinCount.studiosWithWinCount = res.data.studios.slice(-3)
+                    state.topThreeStudiosWithWinCount.studiosWithWinCount = res.data.studios.slice(0, 3)
                 })
             } catch {
                 showErrorToast('Erro ao carregar top 3 studios!');
