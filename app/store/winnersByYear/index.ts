@@ -34,6 +34,12 @@ export const createWinnersByYearSlice: ImmerStateCreator<
             })
         },
 
+        actionClearWinnersByYear: () => {
+            set(state => {
+                state.winnersByYear.winnersByYear = []
+            })
+        },
+
         fetchWinnersByYearApi: async (year?: number) => {
             set(state => {
                 state.winnersByYear.isLoading = true

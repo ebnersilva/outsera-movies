@@ -4,6 +4,7 @@ import { IMoviesList, IMoviesListParams, IMoviesListSlice } from './types';
 import { api } from '~/app/services/api';
 import { AxiosResponse } from 'axios';
 import { showErrorToast } from '~/app/utils/showToast';
+import { INITIAL_PAGE } from '~/app/utils/constants';
 
 export const createMoviesListSlice: ImmerStateCreator<
     IMoviesListSlice
@@ -14,7 +15,7 @@ export const createMoviesListSlice: ImmerStateCreator<
             pageable: {
                 offset: 0,
                 pageSize: 50,
-                pageNumber: 1
+                pageNumber: INITIAL_PAGE
             },
             totalPages: 1,
             totalElements: 0,

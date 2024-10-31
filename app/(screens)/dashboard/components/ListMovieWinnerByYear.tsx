@@ -1,4 +1,4 @@
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons"
+import { Cross1Icon, MagnifyingGlassIcon } from "@radix-ui/react-icons"
 import { useEffect, useState } from "react";
 import { Table } from "~/app/components/Table"
 import { useAppStore } from "~/app/store";
@@ -12,20 +12,26 @@ export const ListMovieWinnerByYear = () => {
         winnersByYear,
         winnersByYearColumns,
         isLoading: isWinnersByYearLoading,
-        fetchWinnersByYearApi
+        fetchWinnersByYearApi,
+        actionClearWinnersByYear
     } = useAppStore(state => state.winnersByYear);
 
     useEffect(() => {
     fetchWinnersByYearApi();
-    }, []);
+    }, [fetchWinnersByYearApi]);
 
     const handleOnSearch = () => {
-        if (!filteredYear) {
+        if (!filteredYear || !/^\d{4}$/.test(filteredYear)) {
             showErrorToast('Informe um ano válido')
             return;
         }
         
         fetchWinnersByYearApi(parseInt(filteredYear))
+    }
+
+    const handleOnClear = () => {
+        setFilteredYear('');
+        actionClearWinnersByYear();
     }
 
     return (
@@ -38,6 +44,7 @@ export const ListMovieWinnerByYear = () => {
                 className="flex w-full rounded-sm h-8 p-2 border-none text-slate-900" 
                 type="number" 
                 placeholder="Search by year" 
+                value={filteredYear}
                 onChange={e => setFilteredYear(e.target.value)} 
             />
 
@@ -48,6 +55,18 @@ export const ListMovieWinnerByYear = () => {
             >
                 <MagnifyingGlassIcon />
             </button>
+        
+            {filteredYear && (
+                <button 
+                    className="flex items-center justify-center bg-slate-900 rounded-sm h-8 w-8" 
+                    type="button"
+                    onClick={handleOnClear}
+                >
+                    <Cross1Icon />
+                </button>
+            )}
+            
+
             </div>
 
             <Table<WinnerByYear>

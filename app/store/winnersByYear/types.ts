@@ -15,6 +15,7 @@ export interface IWinnersByYearSlice {
         winnersByYearColumns: IColumn<WinnerByYear>[]
         isLoading: boolean;
         actionSetIsLoading: (isLoading: boolean) => void
+        actionClearWinnersByYear: () => void
         fetchWinnersByYearApi: (year?: number) => Promise<void>
     }
 }
