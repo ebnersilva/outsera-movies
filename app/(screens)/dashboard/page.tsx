@@ -17,7 +17,7 @@ export default function Dashboard() {
 			</div>
 
 			{/* Second Line */}
-			<div className="flex flex-row gap-10 flex-wrap">
+			<div className="flex flex-row sm:flex-col md:flex-col lg:flex-row  gap-10 flex-wrap">
 				<MaxMinIntervalProducers />
 
 				<ListMovieWinnerByYear />
